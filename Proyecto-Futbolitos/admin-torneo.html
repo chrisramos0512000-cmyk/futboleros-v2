@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Edición | Fut-Bolitos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-dashboard {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border-top: 6px solid #ffc107;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .dashboard-header h2 {
+            color: #0b192c;
+            font-size: 24px;
+        }
+        .btn-regresar {
+            background-color: #6c757d;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-regresar:hover {
+            background-color: #5a6268;
+        }
+        .edit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .control-group label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #0b192c;
+            margin-bottom: 6px;
+        }
+        .control-group input, .control-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            background-color: #fff;
+        }
+        .control-group select {
+            max-height: 250px;
+        }
+        .control-group input:focus, .control-group select:focus {
+            border-color: #0b192c;
+        }
+        .form-help {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .btn-guardar {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .btn-guardar:hover {
+            background-color: #218838;
+        }
+        #mensajeExito {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        /* Estilos del menú desplegable */
+        header {
+            background-color: #0b192c;
+            color: #ffffff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+        }
+        .menu-dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+        .menu-btn {
+            background-color: #ffcc00;
+            color: #0b192c;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+        .menu-btn:hover {
+            background-color: #e6b800;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #0b192c;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            z-index: 1000;
+            overflow: hidden;
+            margin-top: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-content a:hover, .dropdown-content a.active {
+            background-color: #142a4a;
+            color: #ffcc00;
+            border-left: 4px solid #ffcc00;
+        }
+        .dropdown-content.show {
+            display: block;
+        }
+        .brand {
+            text-align: right;
+        }
+        .brand-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffcc00;
+            display: block;
+        }
+        .brand-subtitle {
+            font-size: 13px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<header>
+    <div class="navbar">
+        <div class="menu-dropdown-container">
+            <button class="menu-btn" onclick="toggleMenu()">
+                <span>Menú ⚽</span>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="index.html">Inicio</a>
+                <a href="sistema.html">El Sistema</a>
+                <a href="base-datos.html">Torneos y Posiciones</a>
+                <a href="reglas.html">Reglamento y Reglas</a>
+                <a href="cotizaciones.html">Cotizaciones y Contacto</a>
+            </div>
+        </div>
+        <div class="brand">
+            <span class="brand-title">FUTBOLITOS FUTBOLEROS</span>
+            <span class="brand-subtitle"> | PANEL DE CONTROL</span>
+        </div>
+    </div>
+</header>
+
+<!-- CONTENIDO DEL PANEL DE EDICIÓN -->
+<main class="main-container" style="padding: 20px;">
+    <div class="admin-dashboard">
+        <div class="dashboard-header">
+            <h2 id="tituloTorneo">Administrando Torneo</h2>
+            <a href="base-datos.html" class="btn-regresar">Volver a Posiciones</a>
+        </div>
+        <p>Modifica las estadísticas y la racha de partidos del equipo seleccionado en tiempo real:</p>
+        <form id="formEdicion" onsubmit="guardarCambios(event)">
+            <div class="edit-grid">
+                <div class="control-group">
+                    <label for="selectEquipo">Seleccionar Equipo:</label>
+                    <select id="selectEquipo" onchange="cargarDatosEquipo()">
+                        <!-- Se llena dinámicamente -->
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="inputPJ">Partidos Jugados (PJ):</label>
+                    <input type="number" id="inputPJ" min="0" required>
+                </div>
+                <div class="control-group">
+                    <label for="inputGF">Goles a Favor (GF):</label>
+                    <input type="number" id="inputGF" min="0" required>
+                </div>
+                <div class="control-group">
+                    <label for="inputGC">Goles en Contra (GC):</label>
+                    <input type="number" id="inputGC" min="0" required>
+                </div>
+                <div class="control-group">
+                    <label for="inputPts">Puntos (Pts):</label>
+                    <input type="number" id="inputPts" min="0" required>
+                </div>
+                <div class="control-group" style="grid-column: span 2;">
+                    <label for="inputForm">Últimos 5 Partidos (Forma):</label>
+                    <input type="text" id="inputForm" placeholder="Ej: W,W,L,D,W" required>
+                    <span class="form-help">Usa <strong>W</strong> (Victoria), <strong>D</strong> (Empate), <strong>L</strong> (Derrota) separados por comas.</span>
+                </div>
+            </div>
+            <button type="submit" class="btn-guardar">Guardar Cambios en la Tabla</button>
+        </form>
+        <div id="mensajeExito"></div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p><strong>Fut-Bolitos v2.0</strong> - Sistema de Gestión y Estadísticas Deportivas</p>
+</footer>
+
+<!-- SCRIPT DE SEGURIDAD Y ACTUALIZACIÓN -->
+<script>
+    function toggleMenu() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Cierra el menú si se hace clic fuera de él
+    window.onclick = function(event) {
+        if (!event.target.matches('.menu-btn') && !event.target.matches('.menu-btn *')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const torneoKey = urlParams.get('torneo') || 'laliga';
+
+    // FILTRO DE SEGURIDAD: Validar si el usuario ingresó la contraseña legítimamente
+    if (!sessionStorage.getItem('auth_' + torneoKey)) {
+        alert('Acceso no autorizado. Debes ingresar la contraseña de administrador en la página principal.');
+        window.location.href = 'base-datos.html';
+    }
+
+    const nombresTorneos = {
+        'laliga': 'LaLiga Española',
+        'premier': 'Premier League',
+        'seriea': 'Serie A Italiana',
+        'bundesliga': 'Bundesliga Alemana',
+        'ligue1': 'Ligue 1 de Francia'
+    };
+
+    document.getElementById('tituloTorneo').innerHTML = 'Administrando: ' + (nombresTorneos[torneoKey] || 'Torneo');
+
+    let db = JSON.parse(localStorage.getItem('futbolitos_db')) || {};
+    let equiposTorneo = db[torneoKey] || [];
+    const selectEquipo = document.getElementById('selectEquipo');
+
+    function inicializarSelector() {
+        selectEquipo.innerHTML = '';
+        equiposTorneo.forEach((eq, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = eq.name;
+            selectEquipo.appendChild(option);
+        });
+        cargarDatosEquipo();
+    }
+
+    function cargarDatosEquipo() {
+        const index = selectEquipo.value;
+        if (index !== "" && equiposTorneo[index]) {
+            const eq = equiposTorneo[index];
+            document.getElementById('inputPJ').value = eq.pj;
+            document.getElementById('inputGF').value = eq.gf;
+            document.getElementById('inputGC').value = eq.gc;
+            document.getElementById('inputPts').value = eq.pts;
+            document.getElementById('inputForm').value = eq.form ? eq.form.join(',') : 'W,W,W,W,W';
+        }
+    }
+
+    function guardarCambios(event) {
+        event.preventDefault();
+        const index = selectEquipo.value;
+        if (index === "") return;
+
+        const pj = parseInt(document.getElementById('inputPJ').value);
+        const gf = parseInt(document.getElementById('inputGF').value);
+        const gc = parseInt(document.getElementById('inputGC').value);
+        const pts = parseInt(document.getElementById('inputPts').value);
+        const dg = gf - gc; // Cálculo automático de diferencia de goles
+        const formStr = document.getElementById('inputForm').value;
+        const formStrTrimmed = formStr ? formStr.trim() : '';
+        const formArray = formStrTrimmed ? formStrTrimmed.split(',').map(item => item.trim().toUpperCase()) : ['W','W','W','W','W'];
+
+        equiposTorneo[index].pj = pj;
+        equiposTorneo[index].gf = gf;
+        equiposTorneo[index].gc = gc;
+        equiposTorneo[index].pts = pts;
+        equiposTorneo[index].dg = dg;
+        equiposTorneo[index].form = formArray;
+
+        db[torneoKey] = equiposTorneo;
+        localStorage.setItem('futbolitos_db', JSON.stringify(db));
+
+        const mensaje = document.getElementById('mensajeExito');
+        mensaje.style.color = '#28a745';
+        mensaje.innerHTML = '¡Cambios guardados con éxito! La racha y estadísticas ya se reflejan en la tabla de ' + nombresTorneos[torneoKey] + '!';
+
+        setTimeout(() => {
+            mensaje.innerHTML = '';
+        }, 4000);
+    }
+
+    inicializarSelector();
+</script>
+</body>
+</html>

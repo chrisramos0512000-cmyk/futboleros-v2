@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fut-Bolitos | Inicio y Descripción General</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- BARRA DE NAVEGACIÓN -->
+<header>
+<div class="navbar">
+<div class="nav-left">
+<!-- MENÚ DESPLEGABLE ARRIBA A LA IZQUIERDA -->
+<div class="menu-dropdown-container">
+<button class="menu-btn" onclick="toggleMenu()">
+<span></span>
+<span>Menú</span>
+<small> </small>
+</button>
+<div class="dropdown-content" id="myDropdown">
+<a href="index.html" class="active"> Inicio</a>
+<a href="sistema.html"> El Sistema</a>
+<a href="base-datos.html"> Base de Datos</a>
+<a href="reglas.html"> Reglamento y Reglas</a>
+<a href="cotizaciones.html"> Cotizaciones y Contacto</a>
+</div>
+</div>
+</div>
+<div class="brand">
+<span class="brand-title">FUTBOLITOS FUTBOLEROS</span>
+<span class="brand-subtitle">| TORNEOS QUE UNEN</span>
+</div>
+</div>
+</header>
+
+<!-- HERO SECTION CON ANIMACIONES -->
+<section class="hero">
+<div class="hero-content">
+<span class="hero-badge"> Sistema Web v2.0</span>
+<h2>PLATAFORMA INTEGRAL DE TORNEOS DE FÚTBOL</h2>
+<p>Digitalización, control transparente de alineaciones y prevención de fraude en torneos de fútbol amateur.</p>
+<div>
+<a href="sistema.html" class="btn">Explorar Módulos</a>
+<a href="reglas.html" class="btn btn-secondary" style="margin-left: 10px;">Ver Reglamento</a>
+</div>
+</div>
+</section>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="main-container">
+<!-- SECCIÓN: MISIÓN Y VISIÓN -->
+<h2 class="section-title">Nuestra Identidad</h2>
+<div class="grid-2" style="margin-bottom: 45px;">
+<div class="card">
+<div class="card-icon"> </div>
+<h3>Misión del Proyecto</h3>
+<p>Proporcionar a los organizadores de torneos de fútbol amateur una herramienta informática digital accesible, eficiente y de bajo costo que elimine el fraude por alineaciones indebidas y suplantación de identidad, garantizando competencias justas, transparentes y ordenadas.</p>
+</div>
+<div class="card">
+<div class="card-icon"> </div>
+<h3>Visión del Proyecto</h3>
+<p>Ser el sistema informático de referencia para la gestión integral de ligas deportivas comunitarias y torneos locales en El Salvador, destacando por promover la equidad deportiva y la modernización del deporte aficionado a través del desarrollo de software.</p>
+</div>
+</div>
+
+<!-- SECCIÓN: PROBLEMA Y SOLUCIÓN -->
+<h2 class="section-title">¿De qué trata Fut-Bolitos?</h2>
+<div class="grid-2" style="margin-bottom: 40px;">
+<div class="card">
+<div class="card-icon">
+</div>
+<h3>La Problemática Actual</h3>
+<p>En el fútbol amateur es común llevar el control en hojas de papel. Esto genera pérdida de registros, conflictos por errores humanos, y permite que equipos alineen jugadores no inscritos o que personas jueguen con la identidad de otros, descalificando la equidad deportiva.</p>
+</div>
+<div class="card">
+<div class="card-icon"> </div>
+<h3>La Solución Digital</h3>
+<p><b>Fut-Bolitos</b> centraliza el registro de equipos, futbolistas con su Documento Único de Identidad (DUI), programación de partidos y control en tiempo real de tarjetas amarillas, rojas y sanciones activas para asegurar que solo jueguen quienes estén habilitados legalmente.</p>
+</div>
+</div>
+
+<!-- BENEFICIARIOS -->
+<h2 class="section-title">Beneficiarios del Sistema</h2>
+<div class="grid-2">
+<div class="card">
+<h3>Beneficiarios Directos</h3>
+<ul>
+<li><b>Organizadores del Torneo:</b> Control automatizado de planillas, jornadas y tabla general.</li>
+<li><b>Árbitros:</b> Verificación rápida de la lista oficial de jugadores habilitados antes del pitazo inicial.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Beneficiarios Indirectos</h3>
+<ul>
+<li><b>Equipos Participantes:</b> Certeza y seguridad de que sus rivales compiten de forma legal.</li>
+<li><b>Comunidad Deportiva:</b> Fomento de la disciplina, el respeto al reglamento y el juego limpio.</li>
+</ul>
+</div>
+</div>
+</main>
+
+<!-- PIE DE PÁGINA -->
+  <footer>
+    <p>Desarrollado por <strong>Alan Lopez</strong> y <strong>Christopher Moran</strong> — Bachillerato Técnico Vocacional en Desarrollo de Software (Sección 3-2)</p>
+    <p>Instituto Nacional General Francisco Menéndez (INFRAMEN 2026)</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var dropdown = document.getElementById("myDropdown");
+      dropdown.classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-btn') && !event.target.matches('.menu-btn *')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

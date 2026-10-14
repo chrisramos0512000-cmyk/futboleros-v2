@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUTBOLITOS FUTBOLEROS - Cotizaciones y Contacto</title>
+<style>
+:root {
+--primary-color: #0b192c;
+--accent-color: #ffcc00;
+--bg-color: #f4f6f9;
+--text-color: #333;
+--white: #ffffff;
+}
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: var(--bg-color);
+color: var(--text-color);
+margin: 0;
+padding: 0;
+line-height: 1.6;
+scroll-behavior: smooth;
+}
+header {
+background-color: var(--primary-color);
+color: var(--white);
+padding: 20px 40px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+position: relative;
+}
+/* Estilos para el Menú Desplegable con Hover */
+.menu-container {
+position: relative;
+display: inline-block;
+}
+.menu-btn {
+background-color: var(--accent-color);
+color: var(--primary-color);
+padding: 10px 22px;
+font-size: 16px;
+font-weight: bold;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+transition: background 0.3s;
+}
+.menu-btn:hover {
+background-color: #e6b800;
+}
+.dropdown-content {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background-color: var(--primary-color);
+min-width: 240px;
+box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+border-radius: 6px;
+z-index: 1000;
+margin-top: 8px;
+border: 1px solid rgba(255,255,255,0.1);
+}
+/* Mostrar el menú automáticamente al pasar el cursor por encima */
+.menu-container:hover .dropdown-content {
+display: block;
+}
+.dropdown-content a {
+color: var(--white);
+padding: 12px 18px;
+text-decoration: none;
+display: block;
+font-weight: 600;
+transition: background 0.2s, color 0.2s;
+border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.dropdown-content a:last-child {
+border-bottom: none;
+}
+.dropdown-content a:hover {
+background-color: rgba(255,255,255,0.1);
+color: var(--accent-color);
+}
+.brand-title {
+font-size: 20px;
+font-weight: bold;
+color: var(--accent-color);
+text-align: right;
+letter-spacing: 0.5px;
+}
+.brand-subtitle {
+font-size: 13px;
+font-weight: normal;
+color: rgba(255,255,255,0.8);
+}
+
+.container {
+max-width: 1100px;
+margin: 40px auto;
+padding: 0 20px;
+}
+.section-title {
+text-align: center;
+color: var(--primary-color);
+font-size: 32px;
+margin-bottom: 10px;
+}
+.section-subtitle {
+text-align: center;
+color: #666;
+margin-bottom: 40px;
+}
+.pricing-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+margin-bottom: 40px;
+}
+.price-card {
+background: var(--white);
+border-radius: 12px;
+padding: 30px;
+box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+border-top: 5px solid var(--primary-color);
+transition: transform 0.3s ease;
+}
+.price-card:hover {
+transform: translateY(-5px);
+}
+.price-card.featured {
+border-top-color: var(--accent-color);
+background: #fffdf5;
+}
+.price-card h3 {
+margin-top: 0;
+color: var(--primary-color);
+font-size: 22px;
+}
+.price {
+font-size: 36px;
+font-weight: bold;
+color: var(--primary-color);
+margin: 15px 0;
+}
+.price-card ul {
+padding-left: 20px;
+margin: 20px 0;
+}
+.price-card li {
+margin-bottom: 10px;
+color: #555;
+}
+.btn-cotizar {
+display: block;
+width: 100%;
+background-color: var(--primary-color);
+color: var(--accent-color);
+text-align: center;
+padding: 12px 0;
+border-radius: 6px;
+text-decoration: none;
+font-weight: bold;
+border: none;
+cursor: pointer;
+transition: background 0.3s;
+}
+.btn-cotizar:hover {
+background-color: #142a4a;
+}
+/* Estilos para la Calculadora Dinámica */
+.calculator-box {
+background: var(--white);
+border-radius: 12px;
+padding: 35px;
+box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+margin-bottom: 50px;
+border-top: 5px solid var(--accent-color);
+}
+.calculator-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 30px;
+margin-top: 25px;
+align-items: center;
+}
+.total-display {
+background: var(--primary-color);
+color: var(--white);
+padding: 25px;
+border-radius: 10px;
+text-align: center;
+}
+.contact-section {
+background-color: var(--primary-color);
+color: var(--white);
+padding: 40px;
+border-radius: 12px;
+text-align: center;
+}
+.contact-section h3 {
+color: var(--accent-color);
+margin-top: 0;
+font-size: 26px;
+}
+.contact-phones {
+display: flex;
+justify-content: center;
+gap: 40px;
+margin-top: 25px;
+flex-wrap: wrap;
+}
+.phone-item {
+background: rgba(255, 255, 255, 0.1);
+padding: 15px 25px;
+border-radius: 8px;
+font-size: 18px;
+font-weight: bold;
+}
+footer {
+text-align: center;
+padding: 20px;
+color: #777;
+font-size: 14px;
+margin-top: 40px;
+}
+</style>
+</head>
+<body onload="calcularPresupuesto()">
+<header>
+<!-- Menú Desplegable con Hover -->
+<div class="menu-container">
+<button class="menu-btn">Menú</button>
+<div class="dropdown-content">
+<a href="index.html">Inicio</a>
+<a href="sistema.html">El Sistema</a>
+<a href="base-datos.html">Base de Datos</a>
+<a href="reglas.html">Reglamento y Reglas</a>
+<a href="cotizaciones.html" style="color: var(--accent-color);">Cotizaciones y Contacto</a>
+</div>
+</div>
+
+<div class="brand-title">
+FUTBOLITOS FUTBOLEROS <span class="brand-subtitle">| TORNEOS QUE UNEN</span>
+</div>
+</header>
+
+<div class="container">
+<h2 class="section-title">Planes y Cotizaciones del Sistema</h2>
+<p class="section-subtitle">Soluciones profesionales para la gestión y administración de torneos de fútbol amateur.</p>
+
+<!-- TARJETAS DE PLANES -->
+<div class="pricing-grid">
+<!-- PLAN 1: INSCRIPCIÓN -->
+<div class="price-card">
+<h3>Inscripción de Equipos</h3>
+<div class="price">$15.00 <span style="font-size: 14px; color: #666;">/ equipo</span></div>
+<ul>
+<li>Registro oficial en la plataforma web.</li>
+<li>Gestión automatizada de plantillas y jugadores.</li>
+<li>Control de estadísticas individuales y tarjetas.</li>
+<li>Soporte técnico inicial.</li>
+</ul>
+<button class="btn-cotizar" onclick="irACalculadora()">Cotizar Inscripción</button>
+</div>
+
+<!-- PLAN 2: FASE REGULAR (SOLO IDA) -->
+<div class="price-card featured">
+<h3>Fase Regular (Solo Ida)</h3>
+<div class="price">$30.00 <span style="font-size: 14px; color: #666;">/ torneo</span></div>
+<ul>
+<li>Partidos de fase regular de ida (todos contra todos) calculados según los equipos inscritos.</li>
+<li>Tablas de posiciones y diferencia de goles (DG) en tiempo real.</li>
+<li>Control de turnos y horarios en nuestras canchas disponibles.</li>
+<li>Panel de administración para la fase regular.</li>
+</ul>
+<button class="btn-cotizar" style="background-color: var(--accent-color); color: var(--primary-color);" onclick="irACalculadora()">Elegir Plan de Ida</button>
+</div>
+
+<!-- PLAN 3: TEMPORADA COMPLETA (IDA Y VUELTA) -->
+<div class="price-card">
+<h3>Temporada Completa</h3>
+<div class="price">$60.00 <span style="font-size: 14px; color: #666;">/ torneo</span></div>
+<ul>
+<li>Cobertura total de partidos de ida y vuelta según la cantidad de equipos participantes.</li>
+<li>Tablas de posiciones y diferencia de goles (DG) en tiempo real.</li>
+<li><strong>Control de infraestructura:</strong> Administración de turnos y horarios en nuestras <strong>3 canchas disponibles</strong>.</li>
+<li>Panel de administración blindado con seguridad avanzada.</li>
+</ul>
+<button class="btn-cotizar" style="background-color: var(--accent-color); color: var(--primary-color);" onclick="irACalculadora()">Calcular mi Alquiler</button>
+</div>
+</div>
+
+<!-- CALCULADORA DE EQUIPOS Y TIPO DE TORNEO -->
+<div class="calculator-box" id="calculadora">
+<h3 style="color: var(--primary-color); text-align: center; margin-top: 0; font-size: 24px;">Calculadora de Cotización a la Medida</h3>
+<p style="text-align: center; color: #666; margin-bottom: 25px;">Indica cuántos equipos deseas inscribir y selecciona si prefieres un torneo corto o largo.</p>
+
+<div class="calculator-grid">
+<div>
+<div style="margin-bottom: 20px;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--primary-color);">Cantidad de Equipos a Inscribir:</label>
+<input type="number" id="numEquipos" min="1" value="12" oninput="calcularPresupuesto()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 16px; box-sizing: border-box;">
+<small style="color: #666; display: block; margin-top: 5px;">* Cada equipo tiene un costo de inscripción de $15.00</small>
+</div>
+
+<div>
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--primary-color);">Tipo de Torneo:</label>
+<select id="tipoTorneo" onchange="calcularPresupuesto()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 16px; background: white; box-sizing: border-box;">
+<option value="30">Torneo Corto (Fase Regular / Solo Ida) - $30.00</option>
+<option value="60">Torneo Largo (Temporada Completa / Ida y Vuelta) - $60.00</option>
+</select>
+</div>
+</div>
+
+<div class="total-display">
+<span style="font-size: 13px; color: var(--accent-color); text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">Desglose del Presupuesto</span>
+<div style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); padding: 15px 0; text-align: left;">
+<p id="detalleEquipos" style="margin: 5px 0; font-size: 14px; color: #cbd5e1;">12 equipos x $15.00 = $180.00</p>
+<p id="detalleTorneo" style="margin: 5px 0; font-size: 14px; color: #cbd5e1;">Torneo Corto = $30.00</p>
+</div>
+<span style="font-size: 12px; color: #aaa; text-transform: uppercase;">Presupuesto Total:</span>
+<div id="presupuestoTotal" style="font-size: 36px; font-weight: bold; color: var(--accent-color); margin-top: 5px;">$210.00</div>
+</div>
+</div>
+</div>
+
+<!-- SECCIÓN DE CONTACTO -->
+<div class="contact-section">
+<h3>¿Listo para organizar tu torneo? ¡Contáctanos!</h3>
+<p>Comunícate directamente con nuestro equipo de desarrollo técnico para contrataciones o soporte personalizado.</p>
+<div class="contact-phones">
+<div class="phone-item">Soporte Técnico: +503 7252-0569</div>
+<div class="phone-item">Atención Comercial: +503 6145 7346</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+<p>&copy; 2026 FUTBOLITOS FUTBOLEROS - INFRAMEN. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+function irACalculadora() {
+    document.getElementById('calculadora').scrollIntoView({ behavior: 'smooth' });
+}
+
+function calcularPresupuesto() {
+    let equiposInput = document.getElementById('numEquipos').value;
+    let equipos = parseInt(equiposInput);
+    if (isNaN(equipos) || equipos < 1) {
+        equipos = 0;
+    }
+    
+    let costoInscripcion = equipos * 15.00;
+    
+    let selectTorneo = document.getElementById('tipoTorneo');
+    let costoTorneo = parseFloat(selectTorneo.value);
+    let nombreTorneo = selectTorneo.options[selectTorneo.selectedIndex].text.split(' - ')[0];
+    
+    let totalGeneral = costoInscripcion + costoTorneo;
+    
+    document.getElementById('detalleEquipos').textContent = equipos + ' equipos x $15.00 = $' + costoInscripcion.toFixed(2);
+    document.getElementById('detalleTorneo').textContent = nombreTorneo + ' = $' + costoTorneo.toFixed(2);
+    document.getElementById('presupuestoTotal').textContent = '$' + totalGeneral.toFixed(2);
+}
+</script>
+</body>
+</html>
